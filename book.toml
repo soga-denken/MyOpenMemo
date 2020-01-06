@@ -1,19 +1,27 @@
 [book]
 title = "My Memo"
-description = "this is my personal description"
-authors = "Shota Soga"
+description = "this is my personal memo"
+authors = ["Shota Soga"]
 language = "ja-jp"
 multilingual = false
 src = "src"
+# build-dir not working
+
+[build]
+build-dir = "docs"
 
 [output.html]
 default-theme = "rust"
 # additional-css = ["theme/custom.css"] # CSS の追加
 # additional-js = ["theme/custom.js"]   # JS の追加
 mathjax-support = true              # Mathjax：有効
-no-section-label = true             # 章番号：無効化
+# no-section-label = false             # 章番号：無効化
 git-repository-url = "https://github.com/soga-denken/MyOpenMemo"
 
 [output.html.fold]
-enable = false
-level = 0
+enable = true
+level = 2
+
+#[preprocessor.toc]
+#command = "mdbook-toc"
+#renderer = ["html"]

@@ -1,15 +1,15 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js rust">
+<html lang="ja-jp" class="sidebar-visible no-js rust">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title></title>
+        <title>My Memo</title>
         
         <meta name="robots" content="noindex" />
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="">
+        <meta name="description" content="this is my personal memo">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
@@ -86,7 +86,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div id="sidebar-scrollbox" class="sidebar-scrollbox">
-                <ol class="chapter"><li class="expanded "><a href="chapter_1.html">Chapter 1</a></li></ol>
+                <ol class="chapter"><li class="expanded "><a href="memo.html"><strong aria-hidden="true">1.</strong> memo</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="expanded "><a href="python.html"><strong aria-hidden="true">1.1.</strong> Python関連</a></li><li class="expanded "><a href="xps15.html"><strong aria-hidden="true">1.2.</strong> XPS15 9550関連</a></li><li class="expanded "><a href="mdbook.html"><strong aria-hidden="true">1.3.</strong> mdbook関連</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -118,7 +118,7 @@
                             
                         </div>
 
-                        <h1 class="menu-title"></h1>
+                        <h1 class="menu-title">My Memo</h1>
 
                         <div class="right-buttons">
                             <a href="print.html" title="Print this book" aria-label="Print this book">
@@ -157,8 +157,35 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#chapter-1" id="chapter-1">Chapter 1</a></h1>
-<p>this is a test</p>
+                        <h1><a class="header" href="#メモ" id="メモ">メモ</a></h1>
+<p>ただのメモ。</p>
+<ul>
+<li><a href="./xps15.html">XPS15 9550関連</a></li>
+<li><a href="./python.html">Python関連</a></li>
+</ul>
+<h1><a class="header" href="#python関連" id="python関連">python関連</a></h1>
+<p>python関連のメモ</p>
+<h2><a class="header" href="#install" id="install">install</a></h2>
+<pre><code class="language-bash:install_python.sh">sudo apt install python3 python3-pip idle3
+</code></pre>
+<p>遭遇したバグのメモ</p>
+<!-- toc -->
+<h2><a class="header" href="#usb-cにケーブルだけを指すとシステムの応答が遅くなる" id="usb-cにケーブルだけを指すとシステムの応答が遅くなる">USB-Cにケーブルだけを指すとシステムの応答が遅くなる</a></h2>
+<p>何も接続されていないUSB-Cケーブルを指すとシステムの応答が著しく劣化する。解決策は単純にUSB-Cケーブルを抜くこと。</p>
+<h1><a class="header" href="#サンプルメモ" id="サンプルメモ">サンプルメモ</a></h1>
+<h1><a class="header" href="#数式" id="数式">数式</a></h1>
+<p>前後にスペースを忘れやすいの気をつける。<br />
+Ubuntu環境下では<code>\\[</code> and <code>\\]</code>では数式は使えない。代わりに<code>$$</code>で囲う。</p>
+<p>$$ \mu = \frac{1}{N} \sum_{i=0} x_i $$</p>
+<p>\[
+\frac{\pi}{2} =
+\left( \int_{0}^{\infty} \frac{\sin x}{\sqrt{x}} dx \right)^2 =
+\sum_{k=0}^{\infty} \frac{(2k)!}{2^{2k}(k!)^2} \frac{1}{2k+1} =
+\prod_{k=1}^{\infty} \frac{4k^2}{4k^2 - 1}
+\]</p>
+<p>インラインは \( x \) で表示</p>
+<h2><a class="header" href="#バグ" id="バグ">バグ</a></h2>
+<p>mdbook-tocを有効にすると数式が有効にならない。</p>
 
                     </main>
 

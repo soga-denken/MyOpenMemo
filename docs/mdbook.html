@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>memo - My Memo</title>
+        <title>mdbook関連 - My Memo</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -84,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div id="sidebar-scrollbox" class="sidebar-scrollbox">
-                <ol class="chapter"><li class="expanded "><a href="memo.html"><strong aria-hidden="true">1.</strong> memo</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="expanded "><a href="python.html"><strong aria-hidden="true">1.1.</strong> Python関連</a></li><li class="expanded "><a href="xps15.html"><strong aria-hidden="true">1.2.</strong> XPS15 9550関連</a></li><li class="expanded "><a href="mdbook.html"><strong aria-hidden="true">1.3.</strong> mdbook関連</a></li></ol></li></ol>
+                <ol class="chapter"><li class="expanded "><a href="memo.html"><strong aria-hidden="true">1.</strong> memo</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="expanded "><a href="python.html"><strong aria-hidden="true">1.1.</strong> Python関連</a></li><li class="expanded "><a href="xps15.html"><strong aria-hidden="true">1.2.</strong> XPS15 9550関連</a></li><li class="expanded "><a href="mdbook.html" class="active"><strong aria-hidden="true">1.3.</strong> mdbook関連</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -155,23 +155,31 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#メモ" id="メモ">メモ</a></h1>
-<p>ただのメモ。</p>
-<ul>
-<li><a href="./xps15.html">XPS15 9550関連</a></li>
-<li><a href="./python.html">Python関連</a></li>
-</ul>
+                        <h1><a class="header" href="#サンプルメモ" id="サンプルメモ">サンプルメモ</a></h1>
+<h1><a class="header" href="#数式" id="数式">数式</a></h1>
+<p>前後にスペースを忘れやすいの気をつける。<br />
+Ubuntu環境下では<code>\\[</code> and <code>\\]</code>では数式は使えない。代わりに<code>$$</code>で囲う。</p>
+<p>$$ \mu = \frac{1}{N} \sum_{i=0} x_i $$</p>
+<p>\[
+\frac{\pi}{2} =
+\left( \int_{0}^{\infty} \frac{\sin x}{\sqrt{x}} dx \right)^2 =
+\sum_{k=0}^{\infty} \frac{(2k)!}{2^{2k}(k!)^2} \frac{1}{2k+1} =
+\prod_{k=1}^{\infty} \frac{4k^2}{4k^2 - 1}
+\]</p>
+<p>インラインは \( x \) で表示</p>
+<h2><a class="header" href="#バグ" id="バグ">バグ</a></h2>
+<p>mdbook-tocを有効にすると数式が有効にならない。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-
-                        
-                            <a rel="next" href="python.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
+                            <a rel="prev" href="xps15.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
                             </a>
+                        
+
                         
 
                         <div style="clear: both"></div>
@@ -181,11 +189,11 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-
-                
-                    <a href="python.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
+                    <a href="xps15.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
                     </a>
+                
+
                 
             </nav>
 
