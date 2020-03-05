@@ -1,5 +1,6 @@
 # MyOpenMemo
 
+This repository is my personal memorandum.
 このレポジトリは個人的なメモです。
 
 ## Disclaimer
@@ -7,10 +8,23 @@
 - Except as contained in this notice, the name of the soga-denken and his employer's name shall not be used in advertising or otherwise to promote the sale, use or other dealings in this code without prior written authorization from soga-denken.
 
 ## build
+```
 ./init.sh
-
-## start
+```
+## generate initial document
+```
 mdbook init
+```
+## build
+```
+mdbook build --open
+```
+or
+```
+mdbook serve -p 8081 --open
+```
 
-## generate document
-./move.sh
+## clean
+```
+mdbook clean
+```

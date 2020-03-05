@@ -86,7 +86,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div id="sidebar-scrollbox" class="sidebar-scrollbox">
-                <ol class="chapter"><li class="expanded "><a href="memo.html"><strong aria-hidden="true">1.</strong> memo</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="expanded "><a href="python.html"><strong aria-hidden="true">1.1.</strong> Python関連</a></li><li class="expanded "><a href="xps15.html"><strong aria-hidden="true">1.2.</strong> XPS15 9550関連</a></li><li class="expanded "><a href="mdbook.html"><strong aria-hidden="true">1.3.</strong> mdbook関連</a></li></ol></li></ol>
+                <ol class="chapter"><li class="expanded "><a href="memo.html"><strong aria-hidden="true">1.</strong> memo</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="expanded "><a href="vim.html"><strong aria-hidden="true">1.1.</strong> vim関連</a></li><li class="expanded "><a href="python.html"><strong aria-hidden="true">1.2.</strong> Python関連</a></li><li class="expanded "><a href="xps15.html"><strong aria-hidden="true">1.3.</strong> XPS15 9550関連</a></li><li class="expanded "><a href="mdbook.html"><strong aria-hidden="true">1.4.</strong> mdbook関連</a></li></ol></li><li class="expanded "><a href="qt5.html"><strong aria-hidden="true">2.</strong> QT5</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="expanded "><a href="qt5/moc.html"><strong aria-hidden="true">2.1.</strong> Meta Object System</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -163,9 +163,13 @@
 <li><a href="./xps15.html">XPS15 9550関連</a></li>
 <li><a href="./python.html">Python関連</a></li>
 </ul>
+<p>vimに関するメモ</p>
+<ul>
+<li><a href="https://qiita.com/tekkoc/items/98adcadfa4bdc8b5a6ca">画面分割</a></li>
+</ul>
 <h1><a class="header" href="#python関連" id="python関連">python関連</a></h1>
 <p>python関連のメモ</p>
-<h2><a class="header" href="#install" id="install">install</a></h2>
+<h2><a class="header" href="#install-on-ubuntu" id="install-on-ubuntu">install on ubuntu</a></h2>
 <pre><code class="language-bash:install_python.sh">sudo apt install python3 python3-pip idle3
 </code></pre>
 <p>遭遇したバグのメモ</p>
@@ -186,6 +190,198 @@ Ubuntu環境下では<code>\\[</code> and <code>\\]</code>では数式は使え�
 <p>インラインは \( x \) で表示</p>
 <h2><a class="header" href="#バグ" id="バグ">バグ</a></h2>
 <p>mdbook-tocを有効にすると数式が有効にならない。</p>
+<p>Qt 5に関連するメモ</p>
+<h1><a class="header" href="#qt-5-metaobjectの使い方" id="qt-5-metaobjectの使い方">Qt 5 MetaObjectの使い方</a></h1>
+<h2><a class="header" href="#入力コード" id="入力コード">入力コード</a></h2>
+<pre><code class="language-c++">#include &lt;QApplication&gt;
+#include &lt;QMetaObject&gt;
+#include &lt;QPushButton&gt;
+#include &lt;QDebug&gt;
+#include &lt;QMetaMethod&gt;
+
+
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+
+    // QObjectを自作のものに変えればclass infoあたりの出力を得られるかも。
+    QPushButton * button1 = new QPushButton();
+    auto meta = button1-&gt;metaObject();
+
+    // 参考URL
+    // https://doc.qt.io/qt-5/metaobjects.html
+
+    // meta objectから同種のclassを生成する
+    auto newButton = meta-&gt;newInstance();
+
+    // class情報の取得
+    qDebug() &lt;&lt; &quot;QPushButtonのclass情報一覧&quot;;
+    for(int i = 0; i &lt; meta-&gt;classInfoCount(); ++i){
+        qDebug() &lt;&lt; &quot;\t&quot; &lt;&lt;meta-&gt;classInfo(i).name() &lt;&lt; meta-&gt;classInfo(i).value();
+    }
+
+    // propertyの一覧取得
+    // USER flagがonの一覧はuserPropertyを使う。
+    qDebug() &lt;&lt; &quot;QPushButtonのproperty一覧&quot;;
+    for(int i = 0; i &lt; meta-&gt;propertyCount(); ++i){
+        qDebug() &lt;&lt; &quot;\t&quot; &lt;&lt;meta-&gt;property(i).name();
+    }
+
+    // class名の取得
+    qDebug() &lt;&lt; &quot;class name: &quot; &lt;&lt; meta-&gt;className();
+
+    // constructorのMetaMethodの取得
+    qDebug() &lt;&lt; &quot;constructorのMetaMethodの情報一覧&quot;;
+    for(int i = 0; i &lt; meta-&gt;constructorCount(); ++i){
+        qDebug() &lt;&lt; &quot;\t&quot; &lt;&lt;meta-&gt;constructor(i).name();
+    }
+
+    // method一覧の取得
+    int numMethod = meta-&gt;methodCount();
+    qDebug() &lt;&lt; &quot;QPushButtonのmethod一覧&quot;;
+    for(int i = 0; i &lt; numMethod; ++i){
+        qDebug() &lt;&lt; &quot;\t&quot; &lt;&lt;meta-&gt;method(i).name();// &lt;&lt; endl;
+    }
+
+    // 継承の有無の確認
+    qDebug() &lt;&lt; &quot;QPushButtonは何かを継承している：&quot; &lt;&lt; meta-&gt;inherits(meta);
+
+    // スーパークラス情報の取得
+    auto super = meta-&gt;superClass();
+
+    qDebug() &lt;&lt; &quot;super class name: &quot; &lt;&lt; super-&gt;className();
+
+    return a.exec();
+}
+</code></pre>
+<h2><a class="header" href="#出力結果" id="出力結果">出力結果</a></h2>
+<pre><code class="language-bash">QPushButtonのclass情報一覧
+QPushButtonのproperty一覧
+	 objectName
+	 modal
+	 windowModality
+	 enabled
+	 geometry
+	 frameGeometry
+	 normalGeometry
+	 x
+	 y
+	 pos
+	 frameSize
+	 size
+	 width
+	 height
+	 rect
+	 childrenRect
+	 childrenRegion
+	 sizePolicy
+	 minimumSize
+	 maximumSize
+	 minimumWidth
+	 minimumHeight
+	 maximumWidth
+	 maximumHeight
+	 sizeIncrement
+	 baseSize
+	 palette
+	 font
+	 cursor
+	 mouseTracking
+	 tabletTracking
+	 isActiveWindow
+	 focusPolicy
+	 focus
+	 contextMenuPolicy
+	 updatesEnabled
+	 visible
+	 minimized
+	 maximized
+	 fullScreen
+	 sizeHint
+	 minimumSizeHint
+	 acceptDrops
+	 windowTitle
+	 windowIcon
+	 windowIconText
+	 windowOpacity
+	 windowModified
+	 toolTip
+	 toolTipDuration
+	 statusTip
+	 whatsThis
+	 accessibleName
+	 accessibleDescription
+	 layoutDirection
+	 autoFillBackground
+	 styleSheet
+	 locale
+	 windowFilePath
+	 inputMethodHints
+	 text
+	 icon
+	 iconSize
+	 shortcut
+	 checkable
+	 checked
+	 autoRepeat
+	 autoExclusive
+	 autoRepeatDelay
+	 autoRepeatInterval
+	 down
+	 autoDefault
+	 default
+	 flat
+class name:  QPushButton
+constructorのMetaMethodの情報一覧
+QPushButtonのmethod一覧
+	 &quot;destroyed&quot;
+	 &quot;destroyed&quot;
+	 &quot;objectNameChanged&quot;
+	 &quot;deleteLater&quot;
+	 &quot;_q_reregisterTimers&quot;
+	 &quot;windowTitleChanged&quot;
+	 &quot;windowIconChanged&quot;
+	 &quot;windowIconTextChanged&quot;
+	 &quot;customContextMenuRequested&quot;
+	 &quot;setEnabled&quot;
+	 &quot;setDisabled&quot;
+	 &quot;setWindowModified&quot;
+	 &quot;setWindowTitle&quot;
+	 &quot;setStyleSheet&quot;
+	 &quot;setFocus&quot;
+	 &quot;update&quot;
+	 &quot;repaint&quot;
+	 &quot;setVisible&quot;
+	 &quot;setHidden&quot;
+	 &quot;show&quot;
+	 &quot;hide&quot;
+	 &quot;showMinimized&quot;
+	 &quot;showMaximized&quot;
+	 &quot;showFullScreen&quot;
+	 &quot;showNormal&quot;
+	 &quot;close&quot;
+	 &quot;raise&quot;
+	 &quot;lower&quot;
+	 &quot;updateMicroFocus&quot;
+	 &quot;_q_showIfNotHidden&quot;
+	 &quot;grab&quot;
+	 &quot;grab&quot;
+	 &quot;pressed&quot;
+	 &quot;released&quot;
+	 &quot;clicked&quot;
+	 &quot;clicked&quot;
+	 &quot;toggled&quot;
+	 &quot;setIconSize&quot;
+	 &quot;animateClick&quot;
+	 &quot;animateClick&quot;
+	 &quot;click&quot;
+	 &quot;toggle&quot;
+	 &quot;setChecked&quot;
+	 &quot;showMenu&quot;
+	 &quot;_q_popupPressed&quot;
+QPushButtonは何かを継承している： true
+super class name:  QAbstractButton
+</code></pre>
 
                     </main>
 
@@ -208,6 +404,21 @@ Ubuntu環境下では<code>\\[</code> and <code>\\]</code>では数式は使え�
 
         </div>
 
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload(true); // force reload from server (not from cache)
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
         
 
         

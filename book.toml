@@ -5,8 +5,9 @@ authors = ["Shota Soga"]
 language = "ja-jp"
 multilingual = false
 src = "src"
-# build-dir not working
 
+# 出力ファイルの場所
+# プラグインを導入するとおかしくなる場合があるので気をつける
 [build]
 build-dir = "docs"
 

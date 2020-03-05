@@ -11,4 +11,5 @@ source ~/.bashrd
 rustup default 1.35.0
 
 # build mdbook
+# fixme: make sure the mdbook version is consistent with rust version.
 cargo install mdbook

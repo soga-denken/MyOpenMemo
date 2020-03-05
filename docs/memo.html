@@ -84,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div id="sidebar-scrollbox" class="sidebar-scrollbox">
-                <ol class="chapter"><li class="expanded "><a href="memo.html" class="active"><strong aria-hidden="true">1.</strong> memo</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="expanded "><a href="python.html"><strong aria-hidden="true">1.1.</strong> Python関連</a></li><li class="expanded "><a href="xps15.html"><strong aria-hidden="true">1.2.</strong> XPS15 9550関連</a></li><li class="expanded "><a href="mdbook.html"><strong aria-hidden="true">1.3.</strong> mdbook関連</a></li></ol></li></ol>
+                <ol class="chapter"><li class="expanded "><a href="memo.html" class="active"><strong aria-hidden="true">1.</strong> memo</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="expanded "><a href="vim.html"><strong aria-hidden="true">1.1.</strong> vim関連</a></li><li class="expanded "><a href="python.html"><strong aria-hidden="true">1.2.</strong> Python関連</a></li><li class="expanded "><a href="xps15.html"><strong aria-hidden="true">1.3.</strong> XPS15 9550関連</a></li><li class="expanded "><a href="mdbook.html"><strong aria-hidden="true">1.4.</strong> mdbook関連</a></li></ol></li><li class="expanded "><a href="qt5.html"><strong aria-hidden="true">2.</strong> QT5</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="expanded "><a href="qt5/moc.html"><strong aria-hidden="true">2.1.</strong> Meta Object System</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -169,7 +169,7 @@
                         
 
                         
-                            <a rel="next" href="python.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="vim.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -183,7 +183,7 @@
                 
 
                 
-                    <a href="python.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="vim.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
@@ -191,6 +191,21 @@
 
         </div>
 
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload(true); // force reload from server (not from cache)
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
         
 
         
