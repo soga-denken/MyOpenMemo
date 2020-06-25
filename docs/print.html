@@ -7,12 +7,19 @@
         
         <meta name="robots" content="noindex" />
         
+        
+
+
+        <!-- Custom HTML head -->
+        
+
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="this is my personal memo">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
+        <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
         <link rel="stylesheet" href="css/variables.css">
         <link rel="stylesheet" href="css/general.css">
@@ -21,8 +28,9 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
 
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
@@ -41,7 +49,7 @@
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
             var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "rust" : "rust";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -85,8 +93,8 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div id="sidebar-scrollbox" class="sidebar-scrollbox">
-                <ol class="chapter"><li class="expanded "><a href="memo.html"><strong aria-hidden="true">1.</strong> memo</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="expanded "><a href="vim.html"><strong aria-hidden="true">1.1.</strong> vim関連</a></li><li class="expanded "><a href="python.html"><strong aria-hidden="true">1.2.</strong> Python関連</a></li><li class="expanded "><a href="xps15.html"><strong aria-hidden="true">1.3.</strong> XPS15 9550関連</a></li><li class="expanded "><a href="mdbook.html"><strong aria-hidden="true">1.4.</strong> mdbook関連</a></li></ol></li><li class="expanded "><a href="qt5.html"><strong aria-hidden="true">2.</strong> QT5</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="expanded "><a href="qt5/moc.html"><strong aria-hidden="true">2.1.</strong> Meta Object System</a></li></ol></li></ol>
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="memo.html"><strong aria-hidden="true">1.</strong> memo</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vim.html"><strong aria-hidden="true">1.1.</strong> vim 関連</a></li><li class="chapter-item expanded "><a href="python.html"><strong aria-hidden="true">1.2.</strong> Python 関連</a></li></ol></li><li class="chapter-item expanded "><a href="qt5.html"><strong aria-hidden="true">2.</strong> QT5</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="qt5/moc.html"><strong aria-hidden="true">2.1.</strong> Meta Object System</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="qt5/listSignals.html"><strong aria-hidden="true">2.1.1.</strong> Slots と Signals の一覧取得</a></li></ol></li><li class="chapter-item expanded "><a href="qt5/ref.html"><strong aria-hidden="true">2.2.</strong> 参考文献</a></li><li class="chapter-item expanded "><a href="qt5/errors.html"><strong aria-hidden="true">2.3.</strong> 遭遇したエラー</a></li></ol></li><li class="chapter-item expanded "><a href="rust/rust.html"><strong aria-hidden="true">3.</strong> Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="rust/mdbook.html"><strong aria-hidden="true">3.1.</strong> mdbook 関連</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -95,41 +103,40 @@
 
             <div class="page">
                 
-                <div id="menu-bar" class="menu-bar">
-                    <div id="menu-bar-sticky-container">
-                        <div class="left-buttons">
-                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                                <i class="fa fa-paint-brush"></i>
-                            </button>
-                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                                <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust (default)</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
-                            </ul>
-                            
-                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                                <i class="fa fa-search"></i>
-                            </button>
-                            
-                        </div>
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
 
-                        <h1 class="menu-title">My Memo</h1>
+                    <h1 class="menu-title">My Memo</h1>
 
-                        <div class="right-buttons">
-                            <a href="print.html" title="Print this book" aria-label="Print this book">
-                                <i id="print-button" class="fa fa-print"></i>
-                            </a>
-                            
-                            <a href="https://github.com/soga-denken/MyOpenMemo" title="Git repository" aria-label="Git repository">
-                                <i id="git-repository-button" class="fa fa-github"></i>
-                            </a>
-                            
-                        </div>
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        <a href="https://github.com/soga-denken/MyOpenMemo" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        
                     </div>
                 </div>
 
@@ -158,11 +165,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#メモ" id="メモ">メモ</a></h1>
-<p>ただのメモ。</p>
-<ul>
-<li><a href="./xps15.html">XPS15 9550関連</a></li>
-<li><a href="./python.html">Python関連</a></li>
-</ul>
+<p>ただのメモです。</p>
 <p>vimに関するメモ</p>
 <ul>
 <li><a href="https://qiita.com/tekkoc/items/98adcadfa4bdc8b5a6ca">画面分割</a></li>
@@ -172,25 +175,11 @@
 <h2><a class="header" href="#install-on-ubuntu" id="install-on-ubuntu">install on ubuntu</a></h2>
 <pre><code class="language-bash:install_python.sh">sudo apt install python3 python3-pip idle3
 </code></pre>
-<p>遭遇したバグのメモ</p>
-<!-- toc -->
-<h2><a class="header" href="#usb-cにケーブルだけを指すとシステムの応答が遅くなる" id="usb-cにケーブルだけを指すとシステムの応答が遅くなる">USB-Cにケーブルだけを指すとシステムの応答が遅くなる</a></h2>
-<p>何も接続されていないUSB-Cケーブルを指すとシステムの応答が著しく劣化する。解決策は単純にUSB-Cケーブルを抜くこと。</p>
-<h1><a class="header" href="#サンプルメモ" id="サンプルメモ">サンプルメモ</a></h1>
-<h1><a class="header" href="#数式" id="数式">数式</a></h1>
-<p>前後にスペースを忘れやすいの気をつける。<br />
-Ubuntu環境下では<code>\\[</code> and <code>\\]</code>では数式は使えない。代わりに<code>$$</code>で囲う。</p>
-<p>$$ \mu = \frac{1}{N} \sum_{i=0} x_i $$</p>
-<p>\[
-\frac{\pi}{2} =
-\left( \int_{0}^{\infty} \frac{\sin x}{\sqrt{x}} dx \right)^2 =
-\sum_{k=0}^{\infty} \frac{(2k)!}{2^{2k}(k!)^2} \frac{1}{2k+1} =
-\prod_{k=1}^{\infty} \frac{4k^2}{4k^2 - 1}
-\]</p>
-<p>インラインは \( x \) で表示</p>
-<h2><a class="header" href="#バグ" id="バグ">バグ</a></h2>
-<p>mdbook-tocを有効にすると数式が有効にならない。</p>
-<p>Qt 5に関連するメモ</p>
+<p>Qt5 に関連したメモ</p>
+<ul>
+<li><a href="./qt5/ref.html">参考文献</a></li>
+<li><a href="./qt5/moc.html">Meta Object System</a></li>
+</ul>
 <h1><a class="header" href="#qt-5-metaobjectの使い方" id="qt-5-metaobjectの使い方">Qt 5 MetaObjectの使い方</a></h1>
 <h2><a class="header" href="#入力コード" id="入力コード">入力コード</a></h2>
 <pre><code class="language-c++">#include &lt;QApplication&gt;
@@ -382,6 +371,81 @@ QPushButtonのmethod一覧
 QPushButtonは何かを継承している： true
 super class name:  QAbstractButton
 </code></pre>
+<h1><a class="header" href="#qt-5-signals-および-slots-の一覧取得" id="qt-5-signals-および-slots-の一覧取得">Qt 5 signals および slots の一覧取得</a></h1>
+<h2><a class="header" href="#入力コード-1" id="入力コード-1">入力コード</a></h2>
+<pre><code class="language-c++">#include &lt;QApplication&gt;
+#include &lt;QMetaObject&gt;
+#include &lt;QDebug&gt;
+#include &lt;QMetaMethod&gt;
+
+#include &lt;iostream&gt;
+
+// reference
+// https://stackoverflow.com/questions/36521599/qt-is-there-a-way-to-get-a-list-of-all-custom-slots-and-signals-in-a-class
+
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+
+    // メタオブジェクトの取得
+    const QMetaObject * meta = a.metaObject();
+
+    QList&lt;QString&gt; slotSignatures;
+    QList&lt;QString&gt; signalSignatures;
+
+    // Push Buttonのslotsおよびsignalsを取得する
+    for(int methodIdx = meta-&gt;methodOffset(); methodIdx &lt; meta-&gt;methodCount(); ++methodIdx)
+    {
+      QMetaMethod mmTest = meta-&gt;method(methodIdx);
+      switch((int)mmTest.methodType()) {
+        case QMetaMethod::Signal:
+          signalSignatures.append(QString(mmTest.methodSignature()));
+          break;
+        case QMetaMethod::Slot:
+          slotSignatures.append(QString(mmTest.methodSignature()));
+          break;
+      }
+    }
+
+    std::cout &lt;&lt; &quot;Slots:&quot; &lt;&lt; std::endl;
+    foreach(QString signature, slotSignatures)
+        std::cout &lt;&lt; &quot;\t&quot; &lt;&lt; signature.toStdString() &lt;&lt; std::endl;
+
+    std::cout &lt;&lt; &quot;Signals:&quot; &lt;&lt; std::endl;
+    foreach(QString signature, signalSignatures)
+        std::cout &lt;&lt; &quot;\t&quot; &lt;&lt; signature.toStdString() &lt;&lt; std::endl;
+
+    return 0;
+}
+</code></pre>
+<h1><a class="header" href="#参考文献" id="参考文献">参考文献</a></h1>
+<ul>
+<li>Mastering Qt 5</li>
+<li>Qt 5 Blueprints</li>
+</ul>
+<h1><a class="header" href="#遭遇したエラーおよびその対処" id="遭遇したエラーおよびその対処">遭遇したエラーおよびその対処</a></h1>
+<h2><a class="header" href="#qapplication-file-not-found" id="qapplication-file-not-found">'QApplication' file not found</a></h2>
+<p>原因：Qt creator でコンソールアプリケーションに Widget を追加しようとしたときに発生する。</p>
+<p>対処：QT -= gui をコメントアウトし、QT += widgets を追加する。</p>
+<h1><a class="header" href="#メモ-1" id="メモ-1">メモ</a></h1>
+<ul>
+<li><a href="https://qiita.com/reki2000/items/5693abde190b8149743d">インストール</a></li>
+<li><a href="https://qiita.com/chikoski/items/b6461367e8c3875bb235">アップデート</a></li>
+</ul>
+<h1><a class="header" href="#サンプルメモ" id="サンプルメモ">サンプルメモ</a></h1>
+<h1><a class="header" href="#数式" id="数式">数式</a></h1>
+<p>前後にスペースを忘れやすいの気をつける。<br />
+Ubuntu環境下では<code>\\[</code> and <code>\\]</code>では数式は使えない。代わりに<code>$$</code>で囲う。</p>
+<p>$$ \mu = \frac{1}{N} \sum_{i=0} x_i $$</p>
+<p>\[
+\frac{\pi}{2} =
+\left( \int_{0}^{\infty} \frac{\sin x}{\sqrt{x}} dx \right)^2 =
+\sum_{k=0}^{\infty} \frac{(2k)!}{2^{2k}(k!)^2} \frac{1}{2k+1} =
+\prod_{k=1}^{\infty} \frac{4k^2}{4k^2 - 1}
+\]</p>
+<p>インラインは \( x \) で表示</p>
+<h2><a class="header" href="#バグ" id="バグ">バグ</a></h2>
+<p>mdbook-tocを有効にすると数式が有効にならない。</p>
 
                     </main>
 
@@ -405,29 +469,14 @@ super class name:  QAbstractButton
         </div>
 
         
-        <!-- Livereload script (if served using the cli tool) -->
-        <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:3001");
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload(true); // force reload from server (not from cache)
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
-        
 
         
 
         
-        
+
         
         <script type="text/javascript">
-            window.playpen_copyable = true;
+            window.playground_copyable = true;
         </script>
         
 
