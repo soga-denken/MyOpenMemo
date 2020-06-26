@@ -10,3 +10,7 @@
 
 Qt Maintenance Tool から更新する。
 Menu bar に登録されていないようなので C:\Qt から開く。
+
+## Non-portable path to <Qdialog>
+
+Qdialog の名前が正しくない。正しくは QDialog.
