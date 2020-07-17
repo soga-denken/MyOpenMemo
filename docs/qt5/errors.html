@@ -92,7 +92,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../memo.html"><strong aria-hidden="true">1.</strong> memo</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../vim.html"><strong aria-hidden="true">1.1.</strong> vim 関連</a></li><li class="chapter-item expanded "><a href="../python.html"><strong aria-hidden="true">1.2.</strong> Python 関連</a></li></ol></li><li class="chapter-item expanded "><a href="../qt5.html"><strong aria-hidden="true">2.</strong> QT5</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../qt5/moc.html"><strong aria-hidden="true">2.1.</strong> Meta Object System</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../qt5/listSignals.html"><strong aria-hidden="true">2.1.1.</strong> Slots と Signals の一覧取得</a></li></ol></li><li class="chapter-item expanded "><a href="../qt5/ref.html"><strong aria-hidden="true">2.2.</strong> 参考文献</a></li><li class="chapter-item expanded "><a href="../qt5/errors.html" class="active"><strong aria-hidden="true">2.3.</strong> 遭遇したエラー</a></li></ol></li><li class="chapter-item expanded "><a href="../rust/rust.html"><strong aria-hidden="true">3.</strong> Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../rust/mdbook.html"><strong aria-hidden="true">3.1.</strong> mdbook 関連</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../memo.html"><strong aria-hidden="true">1.</strong> memo</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../vim.html"><strong aria-hidden="true">1.1.</strong> vim 関連</a></li><li class="chapter-item expanded "><a href="../python.html"><strong aria-hidden="true">1.2.</strong> Python 関連</a></li></ol></li><li class="chapter-item expanded "><a href="../qt5.html"><strong aria-hidden="true">2.</strong> QT5</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../qt5/moc.html"><strong aria-hidden="true">2.1.</strong> Meta Object System</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../qt5/listSignals.html"><strong aria-hidden="true">2.1.1.</strong> Slots と Signals の一覧取得</a></li></ol></li><li class="chapter-item expanded "><a href="../qt5/ref.html"><strong aria-hidden="true">2.2.</strong> 参考文献</a></li><li class="chapter-item expanded "><a href="../qt5/tips.html"><strong aria-hidden="true">2.3.</strong> 情報収集</a></li><li class="chapter-item expanded "><a href="../qt5/settings.html"><strong aria-hidden="true">2.4.</strong> Qt Creator 設定</a></li><li class="chapter-item expanded "><a href="../qt5/errors.html" class="active"><strong aria-hidden="true">2.5.</strong> 遭遇したエラー</a></li></ol></li><li class="chapter-item expanded "><a href="../rust/rust.html"><strong aria-hidden="true">3.</strong> Rust</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../rust/mdbook.html"><strong aria-hidden="true">3.1.</strong> mdbook 関連</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -163,19 +163,24 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#遭遇したエラーおよびその対処" id="遭遇したエラーおよびその対処">遭遇したエラーおよびその対処</a></h1>
+<h2><a class="header" href="#コンパイル時に不正終了する" id="コンパイル時に不正終了する">コンパイル時に不正終了する</a></h2>
+<p>原因１：２バイト文字がパスに入っている。
+対処１：パスから２バイト文字がなくなるよう変更する。</p>
 <h2><a class="header" href="#qapplication-file-not-found" id="qapplication-file-not-found">'QApplication' file not found</a></h2>
 <p>原因：Qt creator でコンソールアプリケーションに Widget を追加しようとしたときに発生する。</p>
 <p>対処：QT -= gui をコメントアウトし、QT += widgets を追加する。</p>
 <h2><a class="header" href="#qt-の更新" id="qt-の更新">Qt の更新</a></h2>
 <p>Qt Maintenance Tool から更新する。
 Menu bar に登録されていないようなので C:\Qt から開く。</p>
+<h2><a class="header" href="#non-portable-path-to-qdialog" id="non-portable-path-to-qdialog">Non-portable path to <Qdialog></a></h2>
+<p>Qdialog の名前が正しくない。正しくは QDialog.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../qt5/ref.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../qt5/settings.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
@@ -193,7 +198,7 @@ Menu bar に登録されていないようなので C:\Qt から開く。</p>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../qt5/ref.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../qt5/settings.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
